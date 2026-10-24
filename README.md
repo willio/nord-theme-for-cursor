@@ -2,9 +2,13 @@
 
 Nord (Polar Night) for the [Cursor](https://cursor.com) editor's UI chrome — a custom **glass theme** written into Cursor's theme store, plus the official Nord VS Code extension for editor syntax colors. No Cursor binaries are patched; this only writes theme records and settings.
 
-![Nord theme in Cursor](assets/screenshot.png)
+![Main window](assets/main.png)
 
-*Screenshotted view uses the mod's live glass token values; the darker chat canvas is real behavior — see [what's not themed](#whats-not-themed).*
+*Main window — sidebar, chrome, and canvas in Polar Night.*
+
+![Settings → Appearance](assets/settings.png)
+
+*Settings → Appearance with the glass theme's Nord record active: Hue 220, Intensity 0, Reduce Transparency on — exactly the values `apply.sh` writes.*
 
 ## What gets themed
 
@@ -19,9 +23,9 @@ Nord (Polar Night) for the [Cursor](https://cursor.com) editor's UI chrome — a
 
 Editor **syntax** colors come from the [Nord Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=arcticicestudio.nord-visual-studio-code) extension via `workbench.colorTheme: Nord`.
 
-## What's *not* themed
+## What's *not* directly themed
 
-**The editor and chat canvas background.** Cursor's glass custom-theme fields have no editor-color token, so the canvas keeps the workbench theme's dark base (Cursor Dark ≈ `oklch(0.209 0 0)`, about `#181818`). The sidebar and chrome around it are Nord `#2e3440` — the split you see in the screenshot. If Cursor ever exposes an editor token in glass themes, this mod should adopt it.
+**The editor and chat canvas colors.** Cursor's glass custom-theme fields have no editor-color token — those surfaces follow the VS Code workbench theme instead. That's why this mod also sets `workbench.colorTheme: Nord` and registers the glass theme with `vscodeThemeSettingsId: Nord`, so theme sync keeps them aligned and the canvas renders the same nord0 `#2e3440` you see in the screenshot. If some view ever shows a dark canvas, it's a surface neither the glass tokens nor the workbench theme reach.
 
 Also note tint: `customTintHue` is `220` with `customTintIntensity` `0` — the glass tint stays neutral and the Nord blue comes from the explicit token values, not the tint.
 
